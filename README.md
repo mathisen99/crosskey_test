@@ -20,6 +20,7 @@ To deploy this project run the build script included if you get permission issue
 
 The build proccess will first build the angular frontend and move the built project into the worktest (backend) folder. and then download all neeed deps into the container then the project itself.
 
+Access it at http://localhost:8080
 
 
 ## Features

@@ -31,11 +31,13 @@ export class AddLoanComponent {
     this.apiService.createLoan(loanData).subscribe({
       next: (response) => {
         console.log('Loan added successfully:', response);
-        // Reset form or navigate to another view if necessary
+        // reload window
+        window.location.reload();
       },
       error: (error) => {
         console.error('Error adding loan:', error);
         // Handle error here (show user-friendly message)
+        alert('Error adding loan. Check console for details.');
       }
     });
   }

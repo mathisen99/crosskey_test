@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,8 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FileUploadComponent {
   selectedFile: File | null = null;
+  uploadSuccess: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -25,9 +26,13 @@ export class FileUploadComponent {
       })
       .subscribe({
         next: (data) => {
-          alert(data);
+          this.uploadSuccess = true;
+          this.cdr.detectChanges();
+          window.location.reload();
         },
-        error: (error) => console.error('Error:', error)
+        error: (error) => {
+          console.error('Error:', error);
+        }
       });
     }
   }

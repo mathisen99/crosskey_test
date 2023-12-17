@@ -4,10 +4,10 @@
     <li *ngFor="let loan of loans">
       <p>ID: {{ loan.id }}</p>
       <p>Customer Name: {{ loan.name }}</p>
-      <p>Amount: {{ loan.totalLoan }}</p>
-      <p>Interest Rate: {{ loan.interestRate }}</p>
+      <p>Amount: {{ loan.totalLoan | currency:'EUR':'symbol':'1.2-2' }}</p>
+      <p>Interest Rate: {{ (loan.interestRate / 100) | percent:'1.2-2' }}</p>
       <p>Years: {{ loan.years }}</p>
-      <p>Monthly Payment: {{ loan.monthlyPayment }}</p>
+      <p>Monthly Payment: {{ loan.monthlyPayment | currency:'EUR':'symbol':'1.2-2' }}</p>
     </li>
   </ul>
 </div>
