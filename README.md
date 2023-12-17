@@ -12,30 +12,28 @@ To deploy this project run the build script included if you get permission issue
   ./RunMe
 ```
 
-### Running Components Individually (Without Docker Container)
+### To run them individualy without docker container
 ```bash
-ng build --watch  # Build and develop the frontend
-mvn spring-boot:run  # Run the backend
+  ng build --watch (To build and develop frontend)
+  mvn spring-boot:run (To run backend)
 ```
 
-The build process will first build the Angular frontend and move the built project into the 'worktest' (backend) folder. Afterward, it will download all necessary dependencies into the container.
+The build proccess will first build the angular frontend and move the built project into the worktest (backend) folder. and then download all neeed deps into the container then the project itself.
 
 
 
 ## Features
 
-- A modern REST API for loan data.
-- Unit testing for most use cases required for this demo.
-- A basic Angular frontend to facilitate development.
+- a modern REST API for loan data
+- Unit testing for most cases we needed for this demo
+- a basic frontend in angular to make the proeccess easyer for development.
 
-## What's Missing
-While this demo showcases various functionalities, some aspects are missing:
+## What is missing
+- Security (i would liked to have inplented better security for the front end and backend using token "JWT" to better enchance the comunication between frontend and backend)
+- same goes for saving the data. it is now just using h2 database for development usage. for a real world program this would never leave the the test repo, we would of course use a a decent database like mariadb/postgres or mongo maybe totaly depepnds on the usecase of the program.
+- server is also not running https i could have made self signed certificates and just have tomcat use that but i did not see the need for that for this demo. for a real world use we would use real legit signed certificcated on a secure stable web server like nginx.
 
-- Security: Implement improved security measures, such as JWT token-based authentication, to enhance communication between the frontend and backend.
-- Data Storage: Currently, H2 database is used for development purposes. For a real-world application, it is recommended to use a more robust database like MariaDB, PostgreSQL, or MongoDB, depending on the specific use case.
-- HTTPS: The server does not run over HTTPS in this demo. For production use, it's essential to use legitimate SSL certificates and a secure web server like Nginx.
-- The frontend's primary purpose is to facilitate development, so it may not have the most polished appearance, but it serves its intended function effectively.
-
+- the frontend is there mostly for making the development easyer so the focus has not been on that so it may not be the nicest looking around but it a good job for what i needed it to.
 
 ## More
 - lets talk in person for more details and questions regarding the project.
