@@ -21,6 +21,7 @@ frontend/npm-debug.log
 frontend/testem.log
 frontend/typings/
 frontend/Thumbs.db
+frontend/.angular/cache/
 
 # Java/Spring Boot/Maven Backend (in 'worktest/' directory)
 worktest/target/
@@ -52,3 +53,27 @@ worktest/*.tar.gz
 worktest/*.rar
 worktest/*.db
 worktest/.DS_Store
+
+# Exclude large files and directories
+*.mp4
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.iso
+*.dmg
+*.img
+*.qcow2
+*.ova
+*.vdi
+*.vmdk
+*.log
+
+# General System Files
+.DS_Store
+Thumbs.db
+
+# IDE-specific Files
+.vscode/
+.idea/
+*.iml
