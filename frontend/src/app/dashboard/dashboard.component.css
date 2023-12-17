@@ -1,0 +1,37 @@
+.dashboard {
+    padding: 20px;
+}
+
+.dashboard>h3 {
+    margin-bottom: 0;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+
+.dashboard>.grid {
+    margin: 20px 0;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.dashboard-content {
+    display: flex;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    min-height: 200px;
+    min-width: 70%;
+}
+
+.dashboard-sidebar {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    min-height: 200px;
+    max-width: 30%;
+}
