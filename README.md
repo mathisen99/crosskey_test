@@ -6,7 +6,7 @@ demo repo for a codetest to crosskey.
 
 ## Deployment
 
-To deploy this project run the build script included if you get permission issues make sure you can run it "chmod +x"
+To deploy this project in a docker container run the build script included if you get permission issues make sure you can run it "chmod +x"
 
 ```bash
   ./RunMe
