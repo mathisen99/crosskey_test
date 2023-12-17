@@ -35,6 +35,7 @@ Access it at http://localhost:8080
 - server is also not running https i could have made self signed certificates and just have tomcat use that but i did not see the need for that for this demo. for a real world use we would use real legit signed certificcated on a secure stable web server like nginx.
 
 - the frontend is there mostly for making the development easyer so the focus has not been on that so it may not be the nicest looking around but it a good job for what i needed it to.
+- Not hosted on AWS for this the hole thing would be in a real setup probably have the frontend and backend in diffrent repos or a monorepo and use github actions to do all tests needed and build and finaly run with terraform or simular on AWS. my time was limited also my knowlage is limited when it comes to this so i did not attempt to do this. 
 
 ## More
 - lets talk in person for more details and questions regarding the project.
