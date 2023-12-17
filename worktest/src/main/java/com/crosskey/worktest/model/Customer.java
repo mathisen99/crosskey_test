@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class Customer {
@@ -12,17 +15,23 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Customer name cannot be null")
     private String name;
-    private double totalLoan;
-    private double interestRate;
-    private int years;
-    private double monthlyPayment; // Calculated monthly mortgage payment
 
-    // Default constructor
+    @Positive(message = "Total loan must be positive")
+    private double totalLoan;
+
+    @Positive(message = "Interest rate must be positive")
+    private double interestRate;
+
+    @Min(value = 1, message = "Years must be at least 1")
+    private int years;
+
+    private double monthlyPayment;
+
     public Customer() {
     }
 
-    // Constructor with all fields
     public Customer(Long id, String name, double totalLoan, double interestRate, int years, double monthlyPayment) {
         this.id = id;
         this.name = name;
@@ -31,7 +40,6 @@ public class Customer {
         this.years = years;
         this.monthlyPayment = monthlyPayment;
     }
-
     // Getters and setters
     public Long getId() {
         return id;
@@ -80,6 +88,4 @@ public class Customer {
     public void setMonthlyPayment(double monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
-
-    // Additional methods like equals(), hashCode(), and toString() if needed
 }

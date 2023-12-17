@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Loan } from './loan.model';
+import { Loan, LoanCreation } from './loan.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +12,10 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getLoans(): Observable<Loan[]> {
-    return this.http.get<Loan[]>(`${this.baseUrl}/`);
+    return this.http.get<Loan[]>(`${this.baseUrl}`);
   }
 
-  createLoan(loan: Loan): Observable<Loan> {
-    return this.http.post<Loan>(`${this.baseUrl}/`, loan);
+  createLoan(loanData: LoanCreation): Observable<Loan> {
+    return this.http.post<Loan>(`${this.baseUrl}`, loanData);
   }
 }
-

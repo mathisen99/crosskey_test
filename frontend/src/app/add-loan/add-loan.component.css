@@ -1,0 +1,44 @@
+.add-loan-form {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-gap: 10px;
+    max-width: 400px;
+  }
+  
+  .add-loan-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .add-loan-form input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .add-loan-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-loan-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 767px) {
+    .add-loan-form {
+      width: 100%;
+    }
+  }
+  

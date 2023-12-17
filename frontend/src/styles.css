@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+body, .dashboard-container {
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.dashboard-container > * {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  background-color: #fff;
+}
+
+.fa-icon {
+  color: #007bff;
+}

@@ -1,5 +1,5 @@
-// file-upload.component.ts
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-file-upload',
@@ -9,15 +9,26 @@ import { Component } from '@angular/core';
 export class FileUploadComponent {
   selectedFile: File | null = null;
 
+  constructor(private http: HttpClient) {}
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
 
   uploadFile() {
     if (this.selectedFile) {
-      // Implement file upload logic here
-      console.log('Uploading file:', this.selectedFile);
-      // You can make an HTTP request to upload the file to your server here
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+
+      this.http.post('/api/customers/upload', formData, {
+        responseType: 'text'
+      })
+      .subscribe({
+        next: (data) => {
+          alert(data);
+        },
+        error: (error) => console.error('Error:', error)
+      });
     }
   }
 }

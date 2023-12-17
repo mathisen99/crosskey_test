@@ -1,10 +1,15 @@
-export class Loan {
-    constructor(
-        public id: number,
-        public name: string,
-        public totalLoan: number,
-        public interestRate: number,
-        public years: number,
-        public monthlyPayment: number
-    ) { }
-}
+export interface Loan {
+    id: number;
+    name: string;
+    totalLoan: number;
+    interestRate: number;
+    years: number;
+    monthlyPayment: number;
+  }
+  
+  export interface LoanCreation {
+    name: string;
+    totalLoan: number;
+    interestRate: number;
+    years: number;
+  }

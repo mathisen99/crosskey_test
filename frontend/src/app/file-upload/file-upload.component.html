@@ -1,6 +1,4 @@
-<!-- file-upload.component.html -->
-<form (submit)="uploadFile()">
-    <input type="file" (change)="onFileSelected($event)">
-    <button type="submit">Upload</button>
-  </form>
-  
+<form (submit)="uploadFile()" class="file-upload-form">
+  <input type="file" (change)="onFileSelected($event)">
+  <button type="submit">Upload</button>
+</form>

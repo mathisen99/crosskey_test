@@ -1,6 +1,6 @@
 // add-loan.component.ts
 import { Component } from '@angular/core';
-import { Loan } from '../loan.model';
+import { Loan, LoanCreation } from '../loan.model';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ApiService } from '../api.service';
 export class AddLoanComponent {
   newLoan: Loan = {
     id: 0,
-    name: '', // Initialize with empty values
+    name: '',
     totalLoan: 0,
     interestRate: 0,
     years: 0,
@@ -21,13 +21,24 @@ export class AddLoanComponent {
   constructor(private apiService: ApiService) {}
 
   addLoan() {
-    // Call the API service to add the new loan
-    this.apiService.createLoan(this.newLoan).subscribe((response) => {
-      console.log('Loan added successfully:', response);
-      // You can handle success here
-    }, (error) => {
-      console.error('Error adding loan:', error);
-      // Handle error here
+    const loanData: LoanCreation = {
+      name: this.newLoan.name,
+      totalLoan: this.newLoan.totalLoan,
+      interestRate: this.newLoan.interestRate,
+      years: this.newLoan.years
+    };
+  
+    this.apiService.createLoan(loanData).subscribe({
+      next: (response) => {
+        console.log('Loan added successfully:', response);
+        // Reset form or navigate to another view if necessary
+      },
+      error: (error) => {
+        console.error('Error adding loan:', error);
+        // Handle error here (show user-friendly message)
+      }
     });
   }
+  
+
 }

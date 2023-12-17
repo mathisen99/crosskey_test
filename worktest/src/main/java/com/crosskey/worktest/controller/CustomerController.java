@@ -13,24 +13,33 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
-
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-    
+
     @Autowired
     private CsvFileService csvFileService;
+
+    @PostMapping
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+        try {
+            Customer savedCustomer = customerService.saveCustomer(customer);
+            return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
         // Use system's temporary directory
         String tempDirectory = System.getProperty("java.io.tmpdir");
         String filePath = tempDirectory + File.separator + file.getOriginalFilename();
-    
+
         // Save the file locally
         try (FileOutputStream fos = new FileOutputStream(filePath)) {
             fos.write(file.getBytes());
@@ -38,18 +47,18 @@ public class CustomerController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving file");
         }
-    
+
         // Process the file
         List<Customer> customers = csvFileService.readCustomersFromCsv(filePath);
         for (Customer customer : customers) {
             customerService.saveCustomer(customer);
         }
-    
+
         // Delete the temporary file
         new File(filePath).delete();
-    
+
         return ResponseEntity.ok("File uploaded and processed successfully");
-    }    
+    }
 
     @GetMapping
     public ResponseEntity<List<Customer>> getAllCustomers() {
