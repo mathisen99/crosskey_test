@@ -36,11 +36,9 @@ public class CustomerController {
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
-        // Use system's temporary directory
         String tempDirectory = System.getProperty("java.io.tmpdir");
         String filePath = tempDirectory + File.separator + file.getOriginalFilename();
 
-        // Save the file locally
         try (FileOutputStream fos = new FileOutputStream(filePath)) {
             fos.write(file.getBytes());
         } catch (IOException e) {
@@ -48,13 +46,11 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving file");
         }
 
-        // Process the file
         List<Customer> customers = csvFileService.readCustomersFromCsv(filePath);
         for (Customer customer : customers) {
             customerService.saveCustomer(customer);
         }
 
-        // Delete the temporary file
         new File(filePath).delete();
 
         return ResponseEntity.ok("File uploaded and processed successfully");

@@ -22,16 +22,28 @@ public class CsvFileService {
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreSurroundingSpaces().withTrim())) {
 
             for (CSVRecord record : csvParser) {
-                Customer customer = new Customer();
-                customer.setName(record.get("Customer"));
-                customer.setTotalLoan(Double.parseDouble(record.get("Total loan")));
-                customer.setInterestRate(Double.parseDouble(record.get("Interest")));
-                customer.setYears(Integer.parseInt(record.get("Years")));
-                customers.add(customer);
+                try {
+                    Customer customer = new Customer();
+                    customer.setName(record.get("Customer"));
+                    customer.setTotalLoan(parseDouble(record.get("Total loan")));
+                    customer.setInterestRate(parseDouble(record.get("Interest")));
+                    customer.setYears(parseInt(record.get("Years")));
+                    customers.add(customer);
+                } catch (NumberFormatException e) {
+                    System.err.println("Skipping invalid record: " + e.getMessage());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return customers;
+    }
+
+    private double parseDouble(String value) throws NumberFormatException {
+        return value != null && !value.trim().isEmpty() ? Double.parseDouble(value.trim()) : 0.0;
+    }
+
+    private int parseInt(String value) throws NumberFormatException {
+        return value != null && !value.trim().isEmpty() ? Integer.parseInt(value.trim()) : 0;
     }
 }
