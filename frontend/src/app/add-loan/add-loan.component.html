@@ -1,0 +1,17 @@
+<!-- add-loan.component.html -->
+<form (submit)="addLoan()">
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName" [(ngModel)]="newLoan.name" required>
+  
+    <label for="totalLoan">Total Loan Amount:</label>
+    <input type="number" id="totalLoan" [(ngModel)]="newLoan.totalLoan" required>
+  
+    <label for="interestRate">Interest Rate:</label>
+    <input type="number" id="interestRate" [(ngModel)]="newLoan.interestRate" required>
+  
+    <label for="years">Years:</label>
+    <input type="number" id="years" [(ngModel)]="newLoan.years" required>
+  
+    <button type="submit">Add Loan</button>
+  </form>
+  

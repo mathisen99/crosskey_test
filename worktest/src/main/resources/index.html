@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mortgage Plan</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1><i class="fas fa-landmark"></i> Mortgage Plan</h1>
+
+    <div class="upload-container">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" required />
+            <button type="submit"><i class="fas fa-upload"></i> Upload File</button>
+        </form>
+    </div>
+
+    <div id="customers" class="customers-container">
+        <!-- Customer container -->
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData();
+            const fileInput = document.getElementById('fileInput');
+            formData.append('file', fileInput.files[0]);
+
+            fetch('/api/customers/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                loadCustomers();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function loadCustomers() {
+        fetch('/api/customers')
+            .then(response => response.json())
+            .then(data => {
+                const customersDiv = document.getElementById('customers');
+                customersDiv.innerHTML = ''; // Clear existing content
+                data.forEach(customer => {
+                    const div = document.createElement('div');
+                    div.className = 'customer';
+                    div.innerHTML = `
+                        <h3>${customer.name}</h3>
+                        <p><strong>Total Loan:</strong> €${customer.totalLoan.toFixed(2)}</p>
+                        <p><strong>Interest:</strong> ${customer.interestRate}%</p>
+                        <p><strong>Years:</strong> ${customer.years}</p>
+                        <p><strong>Monthly Payment:</strong> €${customer.monthlyPayment.toFixed(2)}</p>
+                    `;
+                    customersDiv.appendChild(div);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    loadCustomers(); // Initial load of customers
+    </script>
+</body>
+</html>

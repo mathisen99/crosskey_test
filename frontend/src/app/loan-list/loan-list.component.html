@@ -1,0 +1,14 @@
+<div>
+    <h2>Loan List</h2>
+    <ul>
+      <li *ngFor="let loan of loans">
+        <p>ID:{{ loan.id }}</p>
+        <p>Customer Name: {{ loan.name }}</p>
+        <p>Amount: {{ loan.totalLoan }}</p>
+        <p>Interest Rate: {{ loan.interestRate }}</p>
+        <p>Years: {{ loan.years }}</p>
+        <p>Monthly Payment: {{ loan.monthlyPayment }}</p>
+      </li>
+    </ul>
+  </div>
+  
